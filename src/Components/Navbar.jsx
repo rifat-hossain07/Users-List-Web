@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className="navbar border-accent border-2 bg-accent text-black rounded-lg md:w-2/3  justify-around">
         <div className="flex">
           <a to="/" className="  text-xl">
-            Users App
+            Users Manage
           </a>
         </div>
         <div className="flex-none gap-2">

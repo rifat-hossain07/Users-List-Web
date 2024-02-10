@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
-const TableRow = ({ user, index }) => {
+const TableRow = ({ user }) => {
   return (
     <tr className="bg-accent">
-      <td className="border border-black">{index + 1}</td>
+      <td className="border border-black">{user?.id}</td>
       <td className="border border-black">
         <img className="w-16" src={user?.image} alt="" />
       </td>

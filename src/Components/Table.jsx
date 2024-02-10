@@ -3,7 +3,7 @@ import TableRow from "./TableRow";
 /* eslint-disable react/prop-types */
 const Table = ({ users }) => {
   return (
-    <div className="overflow-auto h-[500px]  ">
+    <div className="overflow-auto h-[550px]  ">
       <table className="table table-pin-rows z-0 ">
         {/* head */}
         <thead className="divide-y divide-gray-200   text-black">
@@ -21,7 +21,7 @@ const Table = ({ users }) => {
         </thead>
         <tbody>
           {users?.map((user, index) => (
-            <TableRow key={index} user={user} index={index} />
+            <TableRow key={index} user={user} />
           ))}
         </tbody>
       </table>

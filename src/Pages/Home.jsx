@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import Table from "../Components/Table";
 
 const Home = () => {
+  const [currentPage, setCurrentPage] = useState(0);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -38,27 +39,15 @@ const Home = () => {
   }
   useEffect(() => {
     setLoading(true);
-    axios.get(`https://dummyjson.com/users`).then((res) => {
-      setUsers(res.data.users);
-      setLoading(false);
-    });
-  }, []);
-  //   useEffect(() => {
-  //     function handleScroll() {
-  //       // Height of the area already scrolled
-  //       const scrollTop = document.documentElement.scrollTop;
-  //       // Height of the entire webpage
-  //       const scrollHeight = document.documentElement.scrollHeight;
-  //       // Height of the current windows
-  //       const clientHeight = document.documentElement.clientHeight;
-  //       // check if the user scrolled the page and reach the bottom
-  //       if (scrollTop + clientHeight >= scrollHeight - 1) {
-  //         setPageNumber(pageNumber + 1);
-  //       }
-  //     }
-  //     window.addEventListener("scroll", handleScroll);
-  //     return () => window.removeEventListener("scroll", handleScroll);
-  //   }, [pageNumber]);
+    axios
+      .get(
+        `https://dummyjson.com/users?limit=9&skip=${currentPage * itemPerPage}`
+      )
+      .then((res) => {
+        setUsers(res.data.users);
+        setLoading(false);
+      });
+  }, [currentPage]);
   const handleSearch = (e) => {
     fetch(`https://dummyjson.com/users/search?q=${e.target.value}`)
       .then((res) => res.json())
@@ -69,6 +58,7 @@ const Home = () => {
     const sortOption = e.target.value;
     sortedUsers(sortOption);
   };
+  //   function to sort user
   const sortedUsers = (sortOption) => {
     if (!sortOption) {
       window.location.reload();
@@ -100,6 +90,7 @@ const Home = () => {
     }
     setUsers(sorted);
   };
+  //   function to add user
   const handleAddUser = (e) => {
     e.preventDefault();
     const formData = e.target;
@@ -124,6 +115,20 @@ const Home = () => {
         toast.success("User added successfully!");
         closeModal();
       });
+  };
+  //   Pagination calculation and functions
+  const itemPerPage = 9;
+  const numberOfPages = Math.ceil(100 / itemPerPage);
+  const pages = [...Array(numberOfPages).keys()];
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
   };
   return (
     <>
@@ -174,13 +179,41 @@ const Home = () => {
       ) : (
         <>
           {/* Card View */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10 mx-1 md:mx-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10 mx-3 md:mx-10 mb-10">
             {users?.map((user, index) => (
               <UserCard key={index} user={user} />
             ))}
           </div>
         </>
       )}
+      {/* Pagination */}
+      <div className="flex flex-wrap flex-row mx-auto justify-center pb-10 gap-2 w-11/12">
+        <button
+          className="btn btn-sm lg:btn-md btn-accent"
+          onClick={handlePrevPage}
+        >
+          Prev
+        </button>
+        {pages.map((page) => (
+          <button
+            onClick={() => setCurrentPage(page)}
+            className={
+              currentPage === page
+                ? "bg-accent btn btn-sm lg:btn-md btn-outline"
+                : "btn  btn-sm lg:btn-md  btn-outline "
+            }
+            key={page}
+          >
+            {page + 1}
+          </button>
+        ))}
+        <button
+          className="btn btn-sm lg:btn-md btn-accent"
+          onClick={handleNextPage}
+        >
+          Next
+        </button>
+      </div>
       {/* Modal */}
       <Modal
         isOpen={modalIsOpen}

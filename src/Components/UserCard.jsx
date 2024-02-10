@@ -4,23 +4,22 @@ import { Link } from "react-router-dom";
 const UserCard = ({ user }) => {
   return (
     <div>
-      <div className="card  h-56 card-side bg-accent text-black shadow-accent shadow-md border-2 border-accent items-center">
-        <div className="text-center w-1/3 p-5">
-          <figure>
-            <img className="w-2/3" src={user.image} alt="Shoes" />
-          </figure>
+      <div className="card   bg-accent text-black shadow-accent shadow-md  items-center">
+        <div className="text-center flex justify-start gap-5 items-center p-5">
+          <div>
+            <img className="w-16" src={user.image} alt="Shoes" />
+          </div>
           <Link className="link link-hover" to={`/details/${user.id}`}>
-            <h2 className=" font-medium mt-2">
+            <div className=" font-medium mt-2">
               {user.firstName} {user.lastName}
-            </h2>
+            </div>
           </Link>
         </div>
-        {/* <div className="divider divider-horizontal"></div> */}
-        <div className="card-body p-1">
-          <div className="flex justify-between"></div>
-          <p>
-            <span className="font-medium">Email: </span> {user.email}
-          </p>
+        <div className=" p-1 space-y-2">
+          <div className="flex  justify-between"></div>
+          <div className="">
+            <span className="font-medium ">Email: </span> {user.email}
+          </div>
           <p>
             <span className="font-medium">Address: </span>
             {user.address.address}
