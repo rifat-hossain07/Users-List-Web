@@ -136,7 +136,7 @@ const Home = () => {
       <div className="flex flex-col md:flex-row justify-center mb-5 gap-5 md:gap-0 ">
         <div className="w-2/3 md:w-1/2 mx-auto">
           <input
-            className="input input-bordered input-accent input-md text-black w-full"
+            className="input input-bordered input-accent input-md text-accent w-full"
             type="text"
             placeholder="Search by name..."
             onChange={handleSearch}
@@ -172,7 +172,7 @@ const Home = () => {
       {showTable ? (
         <>
           {/* Table View */}
-          <div>
+          <div className="mb-10">
             <Table users={users} />
           </div>
         </>

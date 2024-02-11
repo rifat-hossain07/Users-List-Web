@@ -17,7 +17,7 @@ const Navbar = () => {
   }, [theme]);
   return (
     <div className="flex justify-center m-5">
-      <div className="navbar border-accent border-2 bg-accent text-black rounded-lg md:w-2/3  justify-around">
+      <div className="navbar border-accent border-2 bg-accent text-black rounded-lg w-11/12   justify-between px-16">
         <div className="flex">
           <a to="/" className="  text-xl">
             Users Manage
