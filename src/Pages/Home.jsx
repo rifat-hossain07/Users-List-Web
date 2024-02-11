@@ -133,10 +133,10 @@ const Home = () => {
   return (
     <>
       {/* Search and Sorting Options */}
-      <div className="flex flex-col md:flex-row justify-center mb-5 gap-5 md:gap-0">
+      <div className="flex flex-col md:flex-row justify-center mb-5 gap-5 md:gap-0 ">
         <div className="w-2/3 md:w-1/2 mx-auto">
           <input
-            className="input input-bordered input-accent input-lg text-black w-full"
+            className="input input-bordered input-accent input-md text-black w-full"
             type="text"
             placeholder="Search by name..."
             onChange={handleSearch}
@@ -144,7 +144,7 @@ const Home = () => {
         </div>
         <div className="mx-auto">
           <select
-            className="input input-bordered input-accent input-lg text-accent"
+            className="input input-bordered input-accent input-md text-accent"
             onChange={handleSort}
           >
             <option value="">Sort by</option>
