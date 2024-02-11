@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-
 /* eslint-disable react/prop-types */
 const UserCard = ({ user }) => {
   return (

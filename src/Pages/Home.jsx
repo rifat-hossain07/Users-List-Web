@@ -13,7 +13,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [showTable, setShowTable] = useState(false);
-  //   const [pageNumber, setPageNumber] = useState(1);
+  //  Styles for Modal
   const customStyles = {
     content: {
       background: "#4FD1C5",
@@ -28,15 +28,19 @@ const Home = () => {
       transform: "translate(-50%, -50%)",
     },
   };
+  // function to open modal
   function openModal() {
     setIsOpen(true);
   }
+  // function to close Modal
   function closeModal() {
     setIsOpen(false);
   }
+  // function to change the view
   function handleTableView() {
     setShowTable(!showTable);
   }
+  // Load Data with pagination
   useEffect(() => {
     setLoading(true);
     axios
@@ -48,6 +52,7 @@ const Home = () => {
         setLoading(false);
       });
   }, [currentPage]);
+  // Function to search based on name
   const handleSearch = (e) => {
     fetch(`https://dummyjson.com/users/search?q=${e.target.value}`)
       .then((res) => res.json())
@@ -116,15 +121,17 @@ const Home = () => {
         closeModal();
       });
   };
-  //   Pagination calculation and functions
+  //   Pagination calculations and functions
   const itemPerPage = 9;
   const numberOfPages = Math.ceil(100 / itemPerPage);
   const pages = [...Array(numberOfPages).keys()];
+  // Change the page to previous
   const handlePrevPage = () => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
     }
   };
+  // Change the page to next
   const handleNextPage = () => {
     if (currentPage < pages.length - 1) {
       setCurrentPage(currentPage + 1);
@@ -132,7 +139,7 @@ const Home = () => {
   };
   return (
     <>
-      {/* Search and Sorting Options */}
+      {/* Search Field */}
       <div className="flex flex-col md:flex-row justify-center mb-5 gap-5 md:gap-0 ">
         <div className="w-2/3 md:w-1/2 mx-auto">
           <input
@@ -142,6 +149,7 @@ const Home = () => {
             onChange={handleSearch}
           />
         </div>
+        {/* Sorting Options */}
         <div className="mx-auto">
           <select
             className="input input-bordered input-accent input-md text-accent"
@@ -159,6 +167,7 @@ const Home = () => {
         <div onClick={openModal}>
           <Button text={"Add New User"} />
         </div>
+        {/* Button to change view */}
         {showTable ? (
           <div onClick={handleTableView} className="justify-end">
             <Button text={"Card View"} />
@@ -350,6 +359,7 @@ const Home = () => {
           </form>
         </div>
       </Modal>
+      {/* Loading Management */}
       {loading && <Loading />}
     </>
   );

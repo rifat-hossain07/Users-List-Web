@@ -19,6 +19,7 @@ const Table = ({ users }) => {
             <th className="border border-black">Details</th>
           </tr>
         </thead>
+        {/* table body */}
         <tbody>
           {users?.map((user, index) => (
             <TableRow key={index} user={user} />

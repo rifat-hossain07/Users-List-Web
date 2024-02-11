@@ -8,6 +8,7 @@ const Details = () => {
   const { id } = useParams();
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
+  // fetch the data by passing id
   useEffect(() => {
     setLoading(true);
     axios.get(`https://dummyjson.com/users/${id}`).then((res) => {
@@ -19,6 +20,7 @@ const Details = () => {
     <>
       {user.length === 0 ? (
         <>
+          {/* show message if data is not in the databae */}
           <div className="text-red-400 text-2xl font-bold text-center mt-20">
             <p>Sorry! Nothing found on Server !</p>
           </div>
@@ -84,6 +86,7 @@ const Details = () => {
           </div>
         </div>
       )}
+      {/* Loading handler */}
       {loading && <Loading />}
     </>
   );

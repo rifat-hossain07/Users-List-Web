@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") ?? "light");
+  // Function to toggle the theme of page
   const handleToggle = (e) => {
     if (e.target.checked) {
       setTheme("dark");
@@ -10,6 +11,7 @@ const Navbar = () => {
       setTheme("light");
     }
   };
+  // To get and set the theme according to localStorage
   useEffect(() => {
     localStorage.setItem("theme", theme);
     const localTheme = localStorage.getItem("theme");
@@ -23,6 +25,7 @@ const Navbar = () => {
             Users Manage
           </a>
         </div>
+        {/* Links */}
         <div className="flex-none gap-2">
           <NavLink
             to="/"
@@ -33,7 +36,7 @@ const Navbar = () => {
             Home
           </NavLink>
           <label className="swap swap-rotate mx-2  my-5">
-            {/* this hidden checkbox controls the state */}
+            {/*  hidden checkbox to controls the state */}
             <input type="checkbox" onChange={handleToggle} />
             {/* sun icon */}
             <svg
