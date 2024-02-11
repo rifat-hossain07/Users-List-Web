@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-
+import { Link, NavLink } from "react-router-dom";
+import logo from "/user.svg";
 const Navbar = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") ?? "light");
   // Function to toggle the theme of page
@@ -18,12 +18,15 @@ const Navbar = () => {
     document.querySelector("html")?.setAttribute("data-theme", localTheme);
   }, [theme]);
   return (
-    <div className="flex justify-center m-5">
-      <div className="navbar border-accent border-2 bg-accent text-black rounded-lg w-11/12   justify-between px-16">
+    <div className="flex justify-center m-2 md:m-5">
+      <div className="navbar border-accent border-2 bg-accent text-black rounded-lg w-11/12   justify-between md:px-16">
         <div className="flex">
-          <a to="/" className="  text-xl">
+          <Link to="/" className=" flex gap-2 items-center md:text-xl">
+            <div className="w-8 h-8">
+              <img src={logo} alt="" />
+            </div>
             Users Manage
-          </a>
+          </Link>
         </div>
         {/* Links */}
         <div className="flex-none gap-2">

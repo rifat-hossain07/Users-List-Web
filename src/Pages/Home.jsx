@@ -155,10 +155,10 @@ const Home = () => {
             className="input input-bordered input-accent input-md text-accent"
             onChange={handleSort}
           >
-            <option value="">Sort by</option>
-            <option value="name">Name</option>
-            <option value="email">Email</option>
-            <option value="company">Company Name</option>
+            <option value="">Click to Sort</option>
+            <option value="name">By Name</option>
+            <option value="email">By Email</option>
+            <option value="company">By Company Name</option>
           </select>
         </div>
       </div>
@@ -208,7 +208,7 @@ const Home = () => {
             onClick={() => setCurrentPage(page)}
             className={
               currentPage === page
-                ? "bg-accent btn btn-sm lg:btn-md btn-outline"
+                ? "bg-accent btn btn-sm lg:btn-md btn-outline text-black"
                 : "btn  btn-sm lg:btn-md  btn-outline "
             }
             key={page}
